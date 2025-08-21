@@ -2,27 +2,38 @@ import logging
 import os
 from dotenv import load_dotenv
 from telegram import (
-    Update, InlineKeyboardMarkup, InlineKeyboardButton,
-    MessageEntity
+    Update, InlineKeyboardMarkup, InlineKeyboardButton
 )
 from telegram.ext import (
-    ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
+    ApplicationBuilder, CommandHandler, ContextTypes
 )
+from pymongo import MongoClient
 
 from config import BOT_DEVELOPER, BOT_LINK, REGISTER_LINK
 
-# Load .env for BOT_TOKEN and Developer ID
+# Load .env for BOT_TOKEN and MongoDB
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "0"))  # Add your Telegram ID in .env
+BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "0"))
+MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017/")
 
 # Enable logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# In-memory storage of chats/users
-served_chats = set()
-served_users = set()
+# MongoDB setup
+client = MongoClient(MONGO_URL)
+db = client["broadcast_bot"]
+chats_col = db["served_chats"]
+users_col = db["served_users"]
+
+
+# Helper: Save user/chat
+def save_user_and_chat(user_id, chat_id):
+    if chat_id:
+        chats_col.update_one({"chat_id": chat_id}, {"$set": {"chat_id": chat_id}}, upsert=True)
+    if user_id:
+        users_col.update_one({"user_id": user_id}, {"$set": {"user_id": user_id}}, upsert=True)
 
 
 # /start command handler
@@ -30,14 +41,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat
 
-    # Save chats and users for broadcasting later
-    served_chats.add(chat.id)
-    served_users.add(user.id)
+    # Save in DB
+    save_user_and_chat(user.id, chat.id)
 
-    # Use your Telegram video file_id here
     video_file_id = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
 
-    # Start message as caption
     caption = (
         "╔═══════════════════════════════╗\n"
         "🎇 *ＷＥＬＣＯＭＥ ＴＯ ＴＦＧＰＬ ２𝟶２５* 🎇\n"
@@ -62,14 +70,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"👨‍💻 *Bot Developed by* [{BOT_DEVELOPER}]({BOT_LINK})"
     )
 
-    # Inline buttons
     keyboard = [
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
         [InlineKeyboardButton("🦅 Whistle Squads", url="https://t.me/BeastPaiyan")],
         [InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")]
     ]
 
-    # Send video + caption + buttons in one message
     await update.message.reply_video(
         video=video_file_id,
         caption=caption,
@@ -87,22 +93,30 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if not context.args and not update.message.reply_to_message:
-        await update.message.reply_text("⚠️ Usage: /broadcast [message or reply] with optional flags (-pin, -pinloud, -user, -nobot)")
+        await update.message.reply_text(
+            "⚠️ Usage: /broadcast [message or reply]\n\n"
+            "Options:\n"
+            "-pin → Pin message\n"
+            "-pinloud → Pin with notification\n"
+            "-user → Broadcast only to users\n"
+            "-nobot → Disable bot broadcast"
+        )
         return
 
-    # Extract flags
+    # Parse args
     text = " ".join(context.args)
     flags = [w for w in text.split() if w.startswith("-")]
     message_text = " ".join([w for w in text.split() if not w.startswith("-")])
 
-    # If reply used instead of message
     if update.message.reply_to_message and not message_text:
         message_text = update.message.reply_to_message.text
 
     results = []
+
     if "-nobot" not in flags:
-        # Broadcast to chats
-        for chat_id in served_chats:
+        # Send to chats
+        for chat in chats_col.find():
+            chat_id = chat["chat_id"]
             try:
                 sent = await context.bot.send_message(chat_id=chat_id, text=message_text)
                 if "-pinloud" in flags:
@@ -115,14 +129,15 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 results.append(f"❌ Chat {chat_id}")
 
     if "-user" in flags:
-        # Broadcast to direct users
-        for user in served_users:
+        # Send to direct users
+        for user in users_col.find():
+            user_id = user["user_id"]
             try:
-                await context.bot.send_message(chat_id=user, text=message_text)
-                results.append(f"👤 Sent to user {user}")
+                await context.bot.send_message(chat_id=user_id, text=message_text)
+                results.append(f"👤 Sent to user {user_id}")
             except Exception as e:
-                logger.warning(f"Failed to send to user {user}: {e}")
-                results.append(f"❌ User {user}")
+                logger.warning(f"Failed to send to user {user_id}: {e}")
+                results.append(f"❌ User {user_id}")
 
     await update.message.reply_text("\n".join(results) or "⚠️ Nothing sent.")
 
@@ -130,10 +145,8 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Start the bot
 def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
-
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("broadcast", broadcast))
-
     app.run_polling()
 
 
