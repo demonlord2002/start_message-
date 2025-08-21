@@ -73,7 +73,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "╚═══════════════════════════════╝\n\n"
         "📅 **Opens:** 22 Aug 2025 🟢\n"
         "📅 **Closes:** 30 Aug 2025 🔴\n"
-        "📍 **Venue:** @group_friendship_tamil 🎯\n\n"
+        "📍 **Venue:** [Tamil Friendship Group ✨ Tamilchat 💓 Tamil Chatting Group 💓💓](https://t.me/group_friendship_tamil) 🎯\n\n"
         "━━━━━━━━━━━━━━━━━━━━\n"
         "📝 **Registration Steps**  \n"
         "✅ Fill Google Form  \n"
