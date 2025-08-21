@@ -62,11 +62,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")]
     ]
 
+    # ✅ Fixed: Removed 'disable_web_page_preview' because it's invalid for reply_video
     await update.message.reply_video(
         video=video_file_id,
         caption=caption,
         parse_mode="Markdown",
-        disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
