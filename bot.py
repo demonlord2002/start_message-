@@ -35,7 +35,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # video_source = "welcome.mp4"
 
     # Option 2: direct URL (works fine if public URL)
-    video_source = "https://example.com/welcome.mp4"  # replace with your valid video URL
+    video_source = "https://envs.sh/F59.mp4"  # replace with your valid video URL
 
     # Option 3: Telegram file_id (works only if valid)
     # video_source = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
