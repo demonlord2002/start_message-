@@ -67,17 +67,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-    "🎉🔥 ＷＥＬＣＯＭＥ ＴＯ 𝗧𝗙𝗚𝗣𝗟 ２０２５ 🔥🎉\n"
+    "╔══════════════════════╗\n"
+    "   🎉🔥 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 🔥🎉\n"
+    "        🌟 𝗧𝗙𝗚𝗣𝗟 𝟮𝟬𝟮𝟱 🌟\n"
+    "╚══════════════════════╝\n\n"
     "⚡ Tamil Friendship Group Premier League ⚡\n\n"
-    "📅 **22 – 30 Aug 2025**\n"
+    "📅 22 – 30 Aug 2025\n"
     "📍 Venue: [Tamil Friendship Group](https://t.me/group_friendship_tamil)\n\n"
-    "🏏 Form your squad (9–16 players)\n"
+    "🏏 Squad: 9–16 players\n"
     "✨ Captain + Vice Captain required\n\n"
-    "💬 Play with 💖Spirit💖, Win with 🏆Pride🏆,\n"
-    "Celebrate with 🎊Friendship🎊\n\n"
+    "💬 *Play with 💖 Spirit 💖*\n"
+    "🏆 *Win with Pride* 🏆\n"
+    "🎊 *Celebrate with Friendship* 🎊\n\n"
     f"👨‍💻 Developed by [{BOT_DEVELOPER}]({BOT_LINK})"
 )
-
+    
     keyboard = [
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
         [
