@@ -31,57 +31,56 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_user_and_chat(user.id, chat.id)
 
-    # -------- Animation Effect --------
+    # -------- Full "ᴅιиg ᴅσиg" Animation --------
     vip = await update.message.reply_text("**ᴅιиg ᴅσиg ꨄ︎❣️.....**")
+    await asyncio.sleep(0.2)
     await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.❣️....**")
+    await asyncio.sleep(0.2)
     await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎..❣️...**")
+    await asyncio.sleep(0.2)
     await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎...❣️..**")
+    await asyncio.sleep(0.2)
     await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎....❣️.**")
+    await asyncio.sleep(0.2)
     await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.....❣️**")
-    await vip.delete()
 
-    vips = await update.message.reply_text("**⚡ѕ**")
-    await asyncio.sleep(0.1)
-    await vips.edit_text("**⚡ѕт**")
-    await vips.edit_text("**⚡ѕтα**")
-    await vips.edit_text("**⚡ѕтαя**")
-    await vips.edit_text("**⚡ѕтαят**")
-    await vips.edit_text("**⚡ѕтαятι**")
-    await vips.edit_text("**⚡ѕтαятιи**")
-    await vips.edit_text("**⚡ѕтαятιиg**")
-    await vips.edit_text("**⚡ѕтαятιиg.**")
-    await asyncio.sleep(0.1)
-    await vips.edit_text("**⚡ѕтαятιиg....**")
-    await asyncio.sleep(0.1)
-    await vips.edit_text("**⚡ѕтαятιиg.**")
-    await asyncio.sleep(0.1)
-    await vips.edit_text("**⚡ѕтαятιиg....**")
+    # -------- Bold START Animation --------
+    start_msg = await update.message.reply_text("**⚡ S**")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("**⚡ ST**")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("**⚡ STA**")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("**⚡ STAR**")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("**⚡ START**")  # FINAL MESSAGE stays
+    await asyncio.sleep(0.3)
 
-    # -------- Welcome Video & Message --------
+    # -------- Welcome Video & Caption --------
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
         "╔═══════════════════════════════╗\n"
-        "🌌✨ ＷＥＬＣＯＭＥ ＴＯ 𝕿𝕱𝕲𝕻𝕷 ２０２５ ✨🌌\n"
-        "⚡ 𝑻𝒂𝒎𝒊𝒍 𝐹𝓇𝒾𝑒𝓃𝒹𝓈𝒽𝒾𝓅 𝑮𝒓𝒐𝒖𝒑 𝑷𝒓𝒆𝒎𝒊𝒆𝒓 𝑳𝒆𝒂𝒈𝒖𝒆 ⚡\n"
+        "🌌✨ **WELCOME TO TFGPL 2025** ✨🌌\n"
+        "⚡ **Tamil Friendship Group Premier League** ⚡\n"
         "╚═══════════════════════════════╝\n\n"
-        "📆 𝗢𝗽𝗲𝗻𝘀: 22 Aug 2025 🌟\n"
-        "📆 𝗖𝗹𝗼𝘀𝗲𝘀: 30 Aug 2025 🌟\n"
-        "📍 𝗩𝗲𝗻𝘂𝗲: @group_friendship_tamil\n\n"
+        "📆 **Opens:** 22 Aug 2025\n"
+        "📆 **Closes:** 30 Aug 2025\n"
+        "📍 **Venue:** @group_friendship_tamil\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "📝 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗦𝘁𝗲𝗽𝘀\n"
-        "✅ Fill 𝗚𝗼𝗼𝗴𝗹𝗲 𝗙𝗼𝗿𝗺\n"
+        "📝 **Registration Steps**\n"
+        "✅ Fill Google Form\n"
         "✅ Captain + Vice Captain ✨\n"
         "✅ Team Name 🌲\n"
         "✅ 9–16 Players 💥\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "👥 𝗦𝗾𝘂𝗮𝗱 𝗥𝘂𝗹𝗲𝘀\n"
+        "👥 **Squad Rules**\n"
         "✅ 9 Min – 16 Max ⚡\n"
         "✅ No Substitutes ❌\n"
         "✅ All 16 are Main Players 🏅\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "💬 “Play with ✨Spirit✨, Win with 🏆Pride🏆, Celebrate with 💖Friendship💖”\n\n"
-        f"👨‍💻 *Bot Developed by* [{BOT_DEVELOPER}]({BOT_LINK})"
+        "💬 **“Play with Spirit, Win with Pride, Celebrate with Friendship”**\n\n"
+        f"👨‍💻 **Bot Developed by** [{BOT_DEVELOPER}]({BOT_LINK})"
     )
 
     keyboard = [
