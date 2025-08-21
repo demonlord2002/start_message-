@@ -1,50 +1,35 @@
 import logging
-import os
-from dotenv import load_dotenv
-from telegram import (
-    Update, InlineKeyboardMarkup, InlineKeyboardButton
-)
-from telegram.ext import (
-    ApplicationBuilder, CommandHandler, ContextTypes
-)
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from pymongo import MongoClient
 
-from config import BOT_DEVELOPER, BOT_LINK, REGISTER_LINK
+from config import BOT_DEVELOPER, BOT_LINK, REGISTER_LINK, BOT_OWNER_ID, MONGO_URL, BOT_TOKEN
 
-# Load .env
-load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "0"))
-MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017/")
-
-# Enable logging
+# ---------------- Logging ----------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# MongoDB setup
+# ---------------- MongoDB ----------------
 client = MongoClient(MONGO_URL)
 db = client["broadcast_bot"]
 chats_col = db["served_chats"]
 users_col = db["served_users"]
 
-
-# Save user/chat into MongoDB
+# ---------------- Helper ----------------
 def save_user_and_chat(user_id, chat_id):
     if chat_id:
         chats_col.update_one({"chat_id": chat_id}, {"$set": {"chat_id": chat_id}}, upsert=True)
     if user_id:
         users_col.update_one({"user_id": user_id}, {"$set": {"user_id": user_id}}, upsert=True)
 
-
-# /start command
+# ---------------- /start ----------------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat
 
-    # Save in DB
+    # Save user and chat in DB
     save_user_and_chat(user.id, chat.id)
 
-    # Example video file_id (replace with your own)
     video_file_id = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
 
     caption = (
@@ -85,8 +70,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
-
-# /broadcast command
+# ---------------- /broadcast ----------------
 async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     if user_id != BOT_OWNER_ID:
@@ -104,7 +88,6 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    # Parse message + flags
     text = " ".join(context.args)
     flags = [w for w in text.split() if w.startswith("-")]
     message_text = " ".join([w for w in text.split() if not w.startswith("-")])
@@ -118,7 +101,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     results = []
 
-    # Send to group chats (unless -nobot flag is used)
+    # ---------------- Broadcast to group chats ----------------
     if "-nobot" not in flags:
         for chat in chats_col.find():
             chat_id = chat["chat_id"]
@@ -133,7 +116,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.warning(f"Failed to send to chat {chat_id}: {e}")
                 results.append(f"❌ Chat {chat_id}")
 
-    # Send to users (only if -user flag is present)
+    # ---------------- Broadcast to users ----------------
     if "-user" in flags:
         for user in users_col.find():
             uid = user["user_id"]
@@ -146,14 +129,12 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text("\n".join(results) or "⚠️ Nothing sent.")
 
-
-# Main entry
+# ---------------- Main ----------------
 def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("broadcast", broadcast))
     app.run_polling()
-
 
 if __name__ == "__main__":
     main()
