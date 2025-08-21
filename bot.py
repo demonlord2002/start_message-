@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from pymongo import MongoClient
@@ -30,6 +31,33 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_user_and_chat(user.id, chat.id)
 
+    # -------- Animation Effect --------
+    vip = await update.message.reply_text("**ᴅιиg ᴅσиg ꨄ︎❣️.....**")
+    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.❣️....**")
+    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎..❣️...**")
+    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎...❣️..**")
+    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎....❣️.**")
+    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.....❣️**")
+    await vip.delete()
+
+    vips = await update.message.reply_text("**⚡ѕ**")
+    await asyncio.sleep(0.1)
+    await vips.edit_text("**⚡ѕт**")
+    await vips.edit_text("**⚡ѕтα**")
+    await vips.edit_text("**⚡ѕтαя**")
+    await vips.edit_text("**⚡ѕтαят**")
+    await vips.edit_text("**⚡ѕтαятι**")
+    await vips.edit_text("**⚡ѕтαятιи**")
+    await vips.edit_text("**⚡ѕтαятιиg**")
+    await vips.edit_text("**⚡ѕтαятιиg.**")
+    await asyncio.sleep(0.1)
+    await vips.edit_text("**⚡ѕтαятιиg....**")
+    await asyncio.sleep(0.1)
+    await vips.edit_text("**⚡ѕтαятιиg.**")
+    await asyncio.sleep(0.1)
+    await vips.edit_text("**⚡ѕтαятιиg....**")
+
+    # -------- Welcome Video & Message --------
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
@@ -44,7 +72,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "📝 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗦𝘁𝗲𝗽𝘀\n"
         "✅ Fill 𝗚𝗼𝗼𝗴𝗹𝗲 𝗙𝗼𝗿𝗺\n"
         "✅ Captain + Vice Captain ✨\n"
-        "✅ Team Name 🌈\n"
+        "✅ Team Name 🌲\n"
         "✅ 9–16 Players 💥\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━\n"
         "👥 𝗦𝗾𝘂𝗮𝗱 𝗥𝘂𝗹𝗲𝘀\n"
