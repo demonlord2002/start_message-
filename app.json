@@ -1,0 +1,51 @@
+{
+  "name": "TFGPL_BroadcastBot",
+  "description": "A Telegram Broadcast Bot using python-telegram-bot and MongoDB to send messages to users and groups.",
+  "repository": "https://github.com/demonlord2002/start_message-",
+  "keywords": ["telegram", "bot", "broadcast", "mongodb", "python", "tfgpl"],
+  "buildpacks": [
+    { "url": "heroku/python" }
+  ],
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token (from @BotFather)",
+      "value": "8365258721:AAG47_D-GLCKMoiakwf0ONUFMVlRck-jwmw",
+      "required": true
+    },
+    "BOT_OWNER_ID": {
+      "description": "Telegram User ID of the bot owner (numeric ID only)",
+      "value": "7049074888",
+      "required": true
+    },
+    "BOT_DEVELOPER": {
+      "description": "Developer Name",
+      "value": "𝙈𝙖𝙧𝙬𝙞𝙣",
+      "required": true
+    },
+    "BOT_LINK": {
+      "description": "Telegram Developer Link",
+      "value": "https://t.me/SunsetOfMe",
+      "required": true
+    },
+    "REGISTER_LINK": {
+      "description": "Registration Form Link",
+      "value": "https://docs.google.com/forms/d/e/1FAIpQLSfGyaA74UQdjftO-Qje70odt0HCkW4Bs9FLftpjBO1EQZ92OA/viewform?usp=dialog",
+      "required": true
+    },
+    "MONGO_URL": {
+      "description": "MongoDB URI for storing user and chat data",
+      "value": "mongodb+srv://rubesh08virat:rubesh08virat@cluster0.d33p1rm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "Basic"
+    }
+  },
+  "addons": [],
+  "scripts": {
+    "postdeploy": "echo '✅ TFGPL Broadcast Bot deployed successfully on Heroku!'"
+  }
+}
