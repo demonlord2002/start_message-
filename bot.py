@@ -30,30 +30,30 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_user_and_chat(user.id, chat.id)
 
-    # --- Video source ---
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-        "╔═══════════════════════════════╗\n"
-        "🎇 *ＷＥＬＣＯＭＥ ＴＯ ＴＦＧＰＬ ２𝟶２５* 🎇\n"
-        "✨ *Tamil Friendship Group Premier League* ✨\n"
-        "╚═══════════════════════════════╝\n\n"
+        "👑══════════════👑\n"
+        "🎆✨ *WELCOME TO TFGPL 2025* ✨🎆\n"
+        "🌟 *Tamil Friendship Group Premier League* 🌟\n"
+        "👑══════════════👑\n\n"
         "📅 *Opens:* 22 Aug 2025\n"
         "📅 *Closes:* 30 Aug 2025\n"
         "📍 *Venue:* @group_friendship_tamil\n\n"
-        "━━━━━━━━━━━━━━━━━━━\n"
+        "━━━━━━━━━━\n"
         "📝 *Registration Steps*\n"
-        "✔ Fill Google Form\n"
-        "✔ Captain + Vice Captain\n"
-        "✔ Team Name\n"
-        "✔ 9–16 Players\n\n"
-        "━━━━━━━━━━━━━━━━━━━\n"
+        "🔹 Fill Google Form\n"
+        "🔹 Captain & Vice Captain\n"
+        "🔹 Team Name\n"
+        "🔹 9–16 Players\n\n"
+        "━━━━━━━━━━\n"
         "👥 *Squad Rules*\n"
-        "✔ 9 Min – 16 Max\n"
-        "✔ No Substitutes\n"
-        "✔ All 16 are main players\n\n"
-        "━━━━━━━━━━━━━━━━━━━\n"
-        "💬 *“Play with spirit, win with pride, celebrate with friendship.”*\n\n"
+        "🔸 9–16 Players\n"
+        "🔸 No Substitutes\n"
+        "🔸 All Main Squad\n\n"
+        "━━━━━━━━━━\n"
+        "💬 *“Play with Spirit, Win with Pride, Celebrate with Friendship”*\n"
+        "✨⚔️🌸🔥✨\n\n"
         f"👨‍💻 *Bot Developed by* [{BOT_DEVELOPER}]({BOT_LINK})"
     )
 
@@ -76,7 +76,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     except Exception as e:
         logger.error(f"Failed to send video: {e}")
-        # fallback to text message if video fails
         await update.message.reply_text(
             f"{caption}\n\n⚠️ Could not send video. Please check your video source.",
             parse_mode="Markdown",
