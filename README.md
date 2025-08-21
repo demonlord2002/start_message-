@@ -20,11 +20,10 @@ Together, these files allow you to broadcast messages to users and group chats, 
 
 ---
 
-## Deploy to Heroku
+## 🚀 Deploy to Heroku  
 
-Click the button below to deploy your bot instantly:
+[![Deploy](https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku)](https://heroku.com/deploy?template=https://github.com/demonlord2002/start_message-)
 
-[![Deploy](https://www.herokucdn.com/deploy/button-red.svg)](https://heroku.com/deploy?template=https://github.com/demonlord2002/start_message-)
 
 ---
 
