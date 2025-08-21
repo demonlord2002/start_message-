@@ -93,8 +93,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
         [
-            InlineKeyboardButton("🦅 Whistle Squads", url="https://t.me/BeastPaiyan"),
-            InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")
+            InlineKeyboardButton("🦅 Whistle squad (bst  interface)", url="https://t.me/BeastPaiyan"),
+            InlineKeyboardButton("🪭 Whistle squad (rubesh interface)", url="https://t.me/Rubesh_official_18")
         ]
     ]
 
