@@ -30,15 +30,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_user_and_chat(user.id, chat.id)
 
-    # --- Video source options ---
-    # Option 1: local file path (uncomment if you upload a video to bot repo)
-    # video_source = "welcome.mp4"
-
-    # Option 2: direct URL (works fine if public URL)
-    video_source = "https://envs.sh/F59.mp4"  # replace with your valid video URL
-
-    # Option 3: Telegram file_id (works only if valid)
-    # video_source = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
+    # --- Video source ---
+    video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
         "╔═══════════════════════════════╗\n"
@@ -65,9 +58,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     keyboard = [
+        # Centered Register button
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
-        [InlineKeyboardButton("🦅 Whistle Squads", url="https://t.me/BeastPaiyan")],
-        [InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")]
+        # Left and Right buttons
+        [
+            InlineKeyboardButton("🦅 Whistle Squads", url="https://t.me/BeastPaiyan"),
+            InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")
+        ]
     ]
 
     try:
