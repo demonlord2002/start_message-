@@ -33,34 +33,31 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-        "👑══════════════👑\n"
-        "🎆✨ *WELCOME TO TFGPL 2025* ✨🎆\n"
-        "🌟 *Tamil Friendship Group Premier League* 🌟\n"
-        "👑══════════════👑\n\n"
-        "📅 *Opens:* 22 Aug 2025\n"
-        "📅 *Closes:* 30 Aug 2025\n"
-        "📍 *Venue:* @group_friendship_tamil\n\n"
-        "━━━━━━━━━━\n"
-        "📝 *Registration Steps*\n"
-        "🔹 Fill Google Form\n"
-        "🔹 Captain & Vice Captain\n"
-        "🔹 Team Name\n"
-        "🔹 9–16 Players\n\n"
-        "━━━━━━━━━━\n"
-        "👥 *Squad Rules*\n"
-        "🔸 9–16 Players\n"
-        "🔸 No Substitutes\n"
-        "🔸 All Main Squad\n\n"
-        "━━━━━━━━━━\n"
-        "💬 *“Play with Spirit, Win with Pride, Celebrate with Friendship”*\n"
-        "✨⚔️🌸🔥✨\n\n"
+        "╔═══════════════════════════════╗\n"
+        "🌌✨ ＷＥＬＣＯＭＥ ＴＯ 𝕿𝕱𝕲𝕻𝕷 ２０２５ ✨🌌\n"
+        "⚡ 𝑻𝒂𝒎𝒊𝒍 𝐹𝓇𝒾𝑒𝓃𝒹𝓈𝒽𝒾𝓅 𝑮𝒓𝒐𝒖𝒑 𝑷𝒓𝒆𝒎𝒊𝒆𝒓 𝑳𝒆𝒂𝒈𝒖𝒆 ⚡\n"
+        "╚═══════════════════════════════╝\n\n"
+        "📆 𝗢𝗽𝗲𝗻𝘀: 22 Aug 2025 🌟\n"
+        "📆 𝗖𝗹𝗼𝘀𝗲𝘀: 30 Aug 2025 🌟\n"
+        "📍 𝗩𝗲𝗻𝘂𝗲: @group_friendship_tamil\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "📝 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗦𝘁𝗲𝗽𝘀\n"
+        "✅ Fill 𝗚𝗼𝗼𝗴𝗹𝗲 𝗙𝗼𝗿𝗺\n"
+        "✅ Captain + Vice Captain ✨\n"
+        "✅ Team Name 🌈\n"
+        "✅ 9–16 Players 💥\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "👥 𝗦𝗾𝘂𝗮𝗱 𝗥𝘂𝗹𝗲𝘀\n"
+        "✅ 9 Min – 16 Max ⚡\n"
+        "✅ No Substitutes ❌\n"
+        "✅ All 16 are Main Players 🏅\n\n"
+        "━━━━━━━━━━━━━━━━━━━━━━\n"
+        "💬 “Play with ✨Spirit✨, Win with 🏆Pride🏆, Celebrate with 💖Friendship💖”\n\n"
         f"👨‍💻 *Bot Developed by* [{BOT_DEVELOPER}]({BOT_LINK})"
     )
 
     keyboard = [
-        # Centered Register button
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
-        # Left and Right buttons
         [
             InlineKeyboardButton("🦅 Whistle Squads", url="https://t.me/BeastPaiyan"),
             InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")
