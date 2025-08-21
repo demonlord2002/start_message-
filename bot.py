@@ -51,13 +51,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # -------- START Animation --------
     start_msg = await update.message.reply_text("⚡ S")
     await asyncio.sleep(0.2)
-    await start_msg.edit_text("⚡ ST")
+    await start_msg.edit_text("⚡ 𝑆𝑇")
     await asyncio.sleep(0.2)
-    await start_msg.edit_text("⚡ STA")
+    await start_msg.edit_text("⚡ 𝑆𝑇𝐴")
     await asyncio.sleep(0.2)
-    await start_msg.edit_text("⚡ STAR")
+    await start_msg.edit_text("⚡ 𝑆𝑇𝐴𝑅")
     await asyncio.sleep(0.2)
-    await start_msg.edit_text("⚡ START")
+    await start_msg.edit_text("⚡ 𝑆𝑇𝐴𝑅𝑇")
     await asyncio.sleep(0.3)
 
     # Delete the START animation message as well
@@ -67,28 +67,28 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-        "╔═══════════════════════════════╗\n"
-        "🌌✨ **WELCOME TO TFGPL 2025** ✨🌌\n"
-        "⚡ **Tamil Friendship Group Premier League** ⚡\n"
-        "╚═══════════════════════════════╝\n\n"
-        "📆 **Opens:** 22 Aug 2025\n"
-        "📆 **Closes:** 30 Aug 2025\n"
-        "📍 **Venue:** @group_friendship_tamil\n\n"
-        "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "📝 **Registration Steps**\n"
-        "✅ Fill Google Form\n"
-        "✅ Captain + Vice Captain ✨\n"
-        "✅ Team Name 🌲\n"
-        "✅ 9–16 Players 💥\n\n"
-        "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "👥 **Squad Rules**\n"
-        "✅ 9 Min – 16 Max ⚡\n"
-        "✅ No Substitutes ❌\n"
-        "✅ All 16 are Main Players 🏅\n\n"
-        "━━━━━━━━━━━━━━━━━━━━━━\n"
-        "💬 **“Play with Spirit, Win with Pride, Celebrate with Friendship”**\n\n"
-        f"👨‍💻 **Bot Developed by** [{BOT_DEVELOPER}]({BOT_LINK})"
-    )
+    "╔═══════════════════════════════╗\n"
+    "🌌✨ **𝑾𝑬𝑳𝑪𝑶𝑴𝑬 𝑻𝑶 𝑻𝑭𝑮𝑷𝑳 2025** ✨🌌\n"
+    "⚡ **𝑻𝒂𝒎𝒊𝒍 𝑭𝒓𝒊𝒆𝒏𝒅𝒔𝒉𝒊𝒑 𝑮𝒓𝒐𝒖𝒑 𝑷𝒓𝒆𝒎𝒊𝒆𝒓 𝑳𝒆𝒂𝒈𝒖𝒆** ⚡\n"
+    "╚═══════════════════════════════╝\n\n"
+    "📆 **𝑶𝒑𝒆𝒏𝒔:** 22 Aug 2025\n"
+    "📆 **𝑪𝒍𝒐𝒔𝒆𝒔:** 30 Aug 2025\n"
+    "📍 **𝑽𝒆𝒏𝒖𝒆:** @group_friendship_tamil\n\n"
+    "━━━━━━━━━━━━━━━━━━━━━━\n"
+    "📝 **𝑹𝒆𝒈𝒊𝒔𝒕𝒓𝒂𝒕𝒊𝒐𝒏 𝑺𝒕𝒆𝒑𝒔**\n"
+    "✅ 𝑭𝒊𝒍𝒍 𝑮𝒐𝒐𝒈𝒍𝒆 𝑭𝒐𝒓𝒎\n"
+    "✅ 𝑪𝒂𝒑𝒕𝒂𝒊𝒏 + 𝑽𝒊𝒄𝒆 𝑪𝒂𝒑𝒕𝒂𝒊𝒏 ✨\n"
+    "✅ 𝑻𝒆𝒂𝒎 𝑵𝒂𝒎𝒆 🌲\n"
+    "✅ 9–16 𝑷𝒍𝒂𝒚𝒆𝒓𝒔 💥\n\n"
+    "━━━━━━━━━━━━━━━━━━━━━━\n"
+    "👥 **𝑺𝒒𝒖𝒂𝒅 𝑹𝒖𝒍𝒆𝒔**\n"
+    "✅ 9 𝑴𝒊𝒏 – 16 𝑴𝒂𝒙 ⚡\n"
+    "✅ 𝑵𝒐 𝑺𝒖𝒃𝒔𝒕𝒊𝒕𝒖𝒕𝒆𝒔 ❌\n"
+    "✅ 𝑨𝒍𝒍 16 𝑨𝒓𝒆 𝑴𝒂𝒊𝒏 𝑷𝒍𝒂𝒚𝒆𝒓𝒔 🏅\n\n"
+    "━━━━━━━━━━━━━━━━━━━━━━\n"
+    "💬 **“𝑷𝒍𝒂𝒚 𝒘𝒊𝒕𝒉 𝑺𝒑𝒊𝒓𝒊𝒕, 𝑾𝒊𝒏 𝒘𝒊𝒕𝒉 𝑷𝒓𝒊𝒅𝒆, 𝑪𝒆𝒍𝒆𝒃𝒓𝒂𝒕𝒆 𝒘𝒊𝒕𝒉 𝑭𝒓𝒊𝒆𝒏𝒅𝒔𝒉𝒊𝒑”**\n\n"
+    f"👨‍💻 **𝑩𝒐𝒕 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒅 𝑩𝒚** [{BOT_DEVELOPER}]({BOT_LINK})"
+)
 
     keyboard = [
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
