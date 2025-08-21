@@ -11,7 +11,7 @@ from pymongo import MongoClient
 
 from config import BOT_DEVELOPER, BOT_LINK, REGISTER_LINK
 
-# Load .env for BOT_TOKEN and MongoDB
+# Load .env
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "0"))
@@ -28,7 +28,7 @@ chats_col = db["served_chats"]
 users_col = db["served_users"]
 
 
-# Helper: Save user/chat
+# Save user/chat into MongoDB
 def save_user_and_chat(user_id, chat_id):
     if chat_id:
         chats_col.update_one({"chat_id": chat_id}, {"$set": {"chat_id": chat_id}}, upsert=True)
@@ -36,7 +36,7 @@ def save_user_and_chat(user_id, chat_id):
         users_col.update_one({"user_id": user_id}, {"$set": {"user_id": user_id}}, upsert=True)
 
 
-# /start command handler
+# /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat
@@ -44,6 +44,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Save in DB
     save_user_and_chat(user.id, chat.id)
 
+    # Example video file_id (replace with your own)
     video_file_id = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
 
     caption = (
@@ -85,7 +86,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-# /broadcast command (only for bot owner)
+# /broadcast command
 async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     if user_id != BOT_OWNER_ID:
@@ -99,11 +100,11 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "-pin → Pin message\n"
             "-pinloud → Pin with notification\n"
             "-user → Broadcast only to users\n"
-            "-nobot → Disable bot broadcast"
+            "-nobot → Skip sending to group chats"
         )
         return
 
-    # Parse args
+    # Parse message + flags
     text = " ".join(context.args)
     flags = [w for w in text.split() if w.startswith("-")]
     message_text = " ".join([w for w in text.split() if not w.startswith("-")])
@@ -111,10 +112,14 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.reply_to_message and not message_text:
         message_text = update.message.reply_to_message.text
 
+    if not message_text:
+        await update.message.reply_text("⚠️ No message to broadcast.")
+        return
+
     results = []
 
+    # Send to group chats (unless -nobot flag is used)
     if "-nobot" not in flags:
-        # Send to chats
         for chat in chats_col.find():
             chat_id = chat["chat_id"]
             try:
@@ -128,21 +133,21 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.warning(f"Failed to send to chat {chat_id}: {e}")
                 results.append(f"❌ Chat {chat_id}")
 
+    # Send to users (only if -user flag is present)
     if "-user" in flags:
-        # Send to direct users
         for user in users_col.find():
-            user_id = user["user_id"]
+            uid = user["user_id"]
             try:
-                await context.bot.send_message(chat_id=user_id, text=message_text)
-                results.append(f"👤 Sent to user {user_id}")
+                await context.bot.send_message(chat_id=uid, text=message_text)
+                results.append(f"👤 Sent to user {uid}")
             except Exception as e:
-                logger.warning(f"Failed to send to user {user_id}: {e}")
-                results.append(f"❌ User {user_id}")
+                logger.warning(f"Failed to send to user {uid}: {e}")
+                results.append(f"❌ User {uid}")
 
     await update.message.reply_text("\n".join(results) or "⚠️ Nothing sent.")
 
 
-# Start the bot
+# Main entry
 def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
