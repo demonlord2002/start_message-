@@ -31,30 +31,37 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     save_user_and_chat(user.id, chat.id)
 
-    # -------- Full "ᴅιиg ᴅσиg" Animation --------
-    vip = await update.message.reply_text("**ᴅιиg ᴅσиg ꨄ︎❣️.....**")
+    # -------- "ᴅιиg ᴅσиg" Animation --------
+    vip = await update.message.reply_text("ᴅιиg ᴅσиg ꨄ︎❣️.....")
     await asyncio.sleep(0.2)
-    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.❣️....**")
+    await vip.edit_text("ᴅιиg ᴅσиg ꨄ︎.❣️....")
     await asyncio.sleep(0.2)
-    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎..❣️...**")
+    await vip.edit_text("ᴅιиg ᴅσиg ꨄ︎..❣️...")
     await asyncio.sleep(0.2)
-    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎...❣️..**")
+    await vip.edit_text("ᴅιиg ᴅσиg ꨄ︎...❣️..")
     await asyncio.sleep(0.2)
-    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎....❣️.**")
+    await vip.edit_text("ᴅιиg ᴅσиg ꨄ︎....❣️.")
     await asyncio.sleep(0.2)
-    await vip.edit_text("**ᴅιиg ᴅσиg ꨄ︎.....❣️**")
-
-    # -------- Bold START Animation --------
-    start_msg = await update.message.reply_text("**⚡ S**")
-    await asyncio.sleep(0.2)
-    await start_msg.edit_text("**⚡ ST**")
-    await asyncio.sleep(0.2)
-    await start_msg.edit_text("**⚡ STA**")
-    await asyncio.sleep(0.2)
-    await start_msg.edit_text("**⚡ STAR**")
-    await asyncio.sleep(0.2)
-    await start_msg.edit_text("**⚡ START**")  # FINAL MESSAGE stays
+    await vip.edit_text("ᴅιиg ᴅσиg ꨄ︎.....❣️")
     await asyncio.sleep(0.3)
+
+    # Delete the first animation message
+    await vip.delete()
+
+    # -------- START Animation --------
+    start_msg = await update.message.reply_text("⚡ S")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("⚡ ST")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("⚡ STA")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("⚡ STAR")
+    await asyncio.sleep(0.2)
+    await start_msg.edit_text("⚡ START")
+    await asyncio.sleep(0.3)
+
+    # Delete the START animation message as well
+    await start_msg.delete()
 
     # -------- Welcome Video & Caption --------
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
