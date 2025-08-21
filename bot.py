@@ -67,28 +67,15 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-    "═══════════════════════════════\n"
     "🎉🔥 ＷＥＬＣＯＭＥ ＴＯ 𝗧𝗙𝗚𝗣𝗟 ２０２５ 🔥🎉\n"
-    "⚡ 𝑻𝒂𝒎𝒊𝒍 𝑭𝒓𝒊𝒆𝒏𝒅𝒔𝒉𝒊𝒑 𝑮𝒓𝒐𝒖𝒑 𝑷𝒓𝒆𝒎𝒊𝒆𝒓 𝑳𝒆𝒂𝒈𝒖𝒆 ⚡\n"
-    "═══════════════════════════════\n\n"
-    "📅 **Opens:** 22 Aug 2025 🟢\n"
-    "📅 **Closes:** 30 Aug 2025 🔴\n"
-    "📍 **Venue:** [Tamil Friendship Group ✨ Tamilchat 💓 Tamil Chatting Group 💓💓](https://t.me/group_friendship_tamil) 🎯\n\n"
-    "═══════════════════════════════\n"
-    "📝 **Registration Steps**\n"
-    "✅ Fill Google Form\n"
-    "✅ Captain + Vice Captain ✨\n"
-    "✅ Team Name 🏏\n"
-    "✅ 9–16 Players 💥\n\n"
-    "═══════════════════════════════\n"
-    "👥 **Squad Rules**\n"
-    "🔥 9 Min – 16 Max\n"
-    "🔥 No Substitutes 🚫\n"
-    "🔥 All 16 are Main Players 🏅\n\n"
-    "═══════════════════════════════\n"
-    "💬 **“Play with 💖Spirit💖, Win with 🏆Pride🏆,\n"
-    "Celebrate with 🎊Friendship🎊”**\n\n"
-    f"👨‍💻 **Bot Developed By** [{BOT_DEVELOPER}]({BOT_LINK})"
+    "⚡ Tamil Friendship Group Premier League ⚡\n\n"
+    "📅 **22 – 30 Aug 2025**\n"
+    "📍 Venue: [Tamil Friendship Group](https://t.me/group_friendship_tamil)\n\n"
+    "🏏 Form your squad (9–16 players)\n"
+    "✨ Captain + Vice Captain required\n\n"
+    "💬 Play with 💖Spirit💖, Win with 🏆Pride🏆,\n"
+    "Celebrate with 🎊Friendship🎊\n\n"
+    f"👨‍💻 Developed by [{BOT_DEVELOPER}]({BOT_LINK})"
 )
 
     keyboard = [
