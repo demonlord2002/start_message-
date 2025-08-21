@@ -2,6 +2,7 @@ import logging
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from pymongo import MongoClient
+import os
 
 from config import BOT_DEVELOPER, BOT_LINK, REGISTER_LINK, BOT_OWNER_ID, MONGO_URL, BOT_TOKEN
 
@@ -27,10 +28,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat
 
-    # Save user and chat in DB
     save_user_and_chat(user.id, chat.id)
 
-    video_file_id = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
+    # --- Video source options ---
+    # Option 1: local file path (uncomment if you upload a video to bot repo)
+    # video_source = "welcome.mp4"
+
+    # Option 2: direct URL (works fine if public URL)
+    video_source = "https://example.com/welcome.mp4"  # replace with your valid video URL
+
+    # Option 3: Telegram file_id (works only if valid)
+    # video_source = "BAACAgUAAxkBAAE56u1opzyL_P6k0YSwiMPPw8nYyeGvWwAClxwAAgQ9QVWe9qeVrkf5WjYE"
 
     caption = (
         "╔═══════════════════════════════╗\n"
@@ -62,13 +70,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("📢 Broadcasting", url="https://t.me/Rubesh_official_18")]
     ]
 
-    # ✅ Fixed: Removed 'disable_web_page_preview' because it's invalid for reply_video
-    await update.message.reply_video(
-        video=video_file_id,
-        caption=caption,
-        parse_mode="Markdown",
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
+    try:
+        await update.message.reply_video(
+            video=video_source,
+            caption=caption,
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
+    except Exception as e:
+        logger.error(f"Failed to send video: {e}")
+        # fallback to text message if video fails
+        await update.message.reply_text(
+            f"{caption}\n\n⚠️ Could not send video. Please check your video source.",
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
 
 # ---------------- /broadcast ----------------
 async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -101,7 +117,6 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     results = []
 
-    # ---------------- Broadcast to group chats ----------------
     if "-nobot" not in flags:
         for chat in chats_col.find():
             chat_id = chat["chat_id"]
@@ -116,7 +131,6 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.warning(f"Failed to send to chat {chat_id}: {e}")
                 results.append(f"❌ Chat {chat_id}")
 
-    # ---------------- Broadcast to users ----------------
     if "-user" in flags:
         for user in users_col.find():
             uid = user["user_id"]
