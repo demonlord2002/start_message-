@@ -94,8 +94,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
         [
-            InlineKeyboardButton("🦅 Wнιѕтℓє Sqυα∂-BST", url="https://t.me/BeastPaiyan"),
-            InlineKeyboardButton("🪭 Wнιѕтℓє Sqυα∂-TVK", url="https://t.me/Rubesh_official_18")
+            InlineKeyboardButton("Wнιѕтℓє Sqυα∂-BST", url="https://t.me/BeastPaiyan"),
+            InlineKeyboardButton("Wнιѕтℓє Sqυα∂-TVK", url="https://t.me/Rubesh_official_18")
         ]
     ]
 
