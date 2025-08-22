@@ -80,9 +80,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     "🏆 *Win with Pride* 🏆\n"
     "🎊 *Celebrate with Friendship* 🎊\n\n"
     "⚡ Organization by [WhistleSquad](https://t.me/WhistleSquad)\n\n"
-    "👨‍💻 Developed by *𝙈𝙖𝙧𝙬𝙞𝙣*"
+    f"👨‍💻 Developed by [{BOT_DEVELOPER}]({BOT_LINK})"
 )
-    
+
     keyboard = [
     [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
     [
