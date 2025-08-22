@@ -67,46 +67,30 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     video_source = "https://envs.sh/F59.mp4"  # Replace with your valid video URL
 
     caption = (
-    "💥✨ 𝗧𝗙𝗚𝗣𝗟 ２𝟶２５ – 𝗧𝗛𝗘 𝗣𝗥𝗘𝗠𝗜𝗘𝗥 𝗟𝗘𝗔𝗚𝗨𝗘 𝗢𝗙 𝗙𝗥𝗜𝗘𝗡𝗗𝗦𝗛𝗜𝗣 ✨💥\n\n"
-    "⭐️ Tamil Friendship Group Premier League ⭐️\n\n"
-    "╔═════════════════════════╗\n"
-    "   🔥 𝔾𝕝𝕠𝕣𝕪 • 𝐔𝐧𝐢𝐭𝐲 • ℂ𝕣𝕚𝕔𝕜𝕖𝕥 𝐏𝐚𝐬𝐬𝐢𝐨𝐧 🔥\n"
-    "╚═════════════════════════╝\n\n"
-    "📅 Registration Opens: *22 Aug 2025*\n"
-    "📅 Closes On: *30 Aug 2025*\n"
-    "📍 Venue: [𝗧𝗮𝗺𝗶𝗹 𝗙𝗿𝗶𝗲𝗻𝗱𝘀𝗵𝗶𝗽 𝗚𝗿𝗼𝘂𝗽🛍🆒](https://t.me/group_friendship_tamil)\n\n"
-    "━━━━━━━━━━━━━━━━━━━\n"
-    "📝 *How to Register*\n"
-    "✅ Fill Google Form\n"
-    "✅ Enter Captain & Vice Captain usernames\n"
-    "✅ Submit Team Name\n"
-    "✅ Add Squad List (9–16 Players)\n"
-    "✅ Tick confirmation before submit\n"
-    "⚠️ Late entries will *NOT* be accepted!\n\n"
-    "━━━━━━━━━━━━━━━━━━━\n"
-    "👥 *Team Guidelines*\n"
-    "😵 Minimum: 9 | Maximum: 16 Players\n"
-    "😵 No Substitutes (All 16 = Official Squad)\n"
-    "😵 Rotation allowed only within squad\n"
-    "😵 Squad Names will be recorded in *Stumps*\n\n"
-    "━━━━━━━━━━━━━━━━━━━\n"
-    "💬 Official Committee:\n"
-    "_“Cricket is the game, Friendship is the crown,\nＴＦＧＰＬ ２𝟶２５ is where legends are born!”_\n\n"
-    "╔═════════════════════╗\n"
-    "   Registration ➡️ 🔥 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSfGyaA74UQdjftO-Qje70odt0HCkW4Bs9FLftpjBO1EQZ92OA/viewform?usp=dialog) 🔥\n"
-    "╚═════════════════════╝\n\n"
-    "🔗 #TFGPL2025 #PremierFriendshipLeague #CricketUnites\n\n"
-    f"👨‍💻 Developed by [{BOT_DEVELOPER}]({BOT_LINK})"
+    "╔══════════════════════╗\n"
+    "   🎉🔥 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 🔥🎉\n"
+    "        🌟 𝗧𝗙𝗚𝗣𝗟 𝟮𝟬𝟮𝟱 🌟\n"
+    "╚══════════════════════╝\n\n"
+    "⚡ *Tamil Friendship Group Premier League* ⚡\n\n"
+    "📅 *22 – 30 Aug 2025*\n"
+    "📍 Venue: [Tamil Friendship Group](https://t.me/group_friendship_tamil)\n\n"
+    "🏏 Squad Size: *9–16 Players*\n"
+    "✨ Captain + Vice Captain *Required*\n\n"
+    "💬 *Play with 💖 Spirit 💖*\n"
+    "🏆 *Win with Pride* 🏆\n"
+    "🎊 *Celebrate with Friendship* 🎊\n\n"
+    "⚡ Organization by [WhistleSquad](https://t.me/WhistleSquad)\n\n"
+    "👨‍💻 Developed by *𝙈𝙖𝙧𝙬𝙞𝙣*"
 )
-
     
     keyboard = [
-        [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
-        [
-            InlineKeyboardButton("WS × BST", url="https://t.me/BeastPaiyan"),
-            InlineKeyboardButton("WS × Doraemon", url="https://t.me/Rubesh_official_18")
-        ]
-    ]
+    [InlineKeyboardButton("📝 Click Here to Register", url=REGISTER_LINK)],
+    [
+        InlineKeyboardButton("WS × BST", url="https://t.me/BeastPaiyan"),
+        InlineKeyboardButton("TFG × Doraemon", url="https://t.me/Rubesh_official_18")
+    ],
+    [InlineKeyboardButton("WhistleSquad", url="https://t.me/WhistleSquad")]
+]
 
     try:
         await update.message.reply_video(
