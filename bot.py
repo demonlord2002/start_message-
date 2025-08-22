@@ -93,7 +93,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     "💬 Official Committee:\n"
     "_“Cricket is the game, Friendship is the crown,\nＴＦＧＰＬ ２𝟶２５ is where legends are born!”_\n\n"
     "╔═════════════════════╗\n"
-    "   Registration ➡️ 🔥 [Click here](https://t.me/group_friendship_tamil) 🔥\n"
+    "   Registration ➡️ 🔥 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSfGyaA74UQdjftO-Qje70odt0HCkW4Bs9FLftpjBO1EQZ92OA/viewform?usp=dialog) 🔥\n"
     "╚═════════════════════╝\n\n"
     "🔗 #TFGPL2025 #PremierFriendshipLeague #CricketUnites\n\n"
     f"👨‍💻 Developed by [{BOT_DEVELOPER}]({BOT_LINK})"
