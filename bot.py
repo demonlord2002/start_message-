@@ -139,9 +139,9 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     results = []
 
-    # Broadcast to groups
+    # --- Groups broadcast ---
     if "-group" in flags:
-        for chat in chats_col.find():
+        for chat in chats_col.find({"type": {"$in": ["group", "supergroup"]}}):
             chat_id = chat["chat_id"]
             try:
                 sent = await context.bot.send_message(chat_id=chat_id, text=message_text)
@@ -154,7 +154,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.warning(f"Failed to send to group {chat_id}: {e}")
                 results.append(f"❌ Group {chat_id}")
 
-    # Broadcast to users
+    # --- Users broadcast ---
     if "-user" in flags:
         for user in users_col.find():
             uid = user["user_id"]
@@ -165,7 +165,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.warning(f"Failed to send to user {uid}: {e}")
                 results.append(f"❌ User {uid}")
 
-    # Default: send to all chats if neither -user nor -group
+    # --- Default: all chats (except when filtered) ---
     if "-user" not in flags and "-group" not in flags and "-nobot" not in flags:
         for chat in chats_col.find():
             chat_id = chat["chat_id"]
@@ -181,6 +181,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 results.append(f"❌ Chat {chat_id}")
 
     await update.message.reply_text("\n".join(results) or "⚠️ Nothing sent.")
+
 
 # ---------------- Main ----------------
 def main():
