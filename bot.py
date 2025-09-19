@@ -121,6 +121,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "-pin → Pin message\n"
             "-pinloud → Pin with notification\n"
             "-user → Broadcast only to users\n"
+            "-group → Broadcast only to groups\n"
             "-nobot → Skip sending to group chats"
         )
         return
@@ -138,7 +139,34 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     results = []
 
-    if "-nobot" not in flags:
+    # Broadcast to groups
+    if "-group" in flags:
+        for chat in chats_col.find():
+            chat_id = chat["chat_id"]
+            try:
+                sent = await context.bot.send_message(chat_id=chat_id, text=message_text)
+                if "-pinloud" in flags:
+                    await context.bot.pin_chat_message(chat_id=chat_id, message_id=sent.message_id, disable_notification=False)
+                elif "-pin" in flags:
+                    await context.bot.pin_chat_message(chat_id=chat_id, message_id=sent.message_id, disable_notification=True)
+                results.append(f"👥 Sent to group {chat_id}")
+            except Exception as e:
+                logger.warning(f"Failed to send to group {chat_id}: {e}")
+                results.append(f"❌ Group {chat_id}")
+
+    # Broadcast to users
+    if "-user" in flags:
+        for user in users_col.find():
+            uid = user["user_id"]
+            try:
+                await context.bot.send_message(chat_id=uid, text=message_text)
+                results.append(f"👤 Sent to user {uid}")
+            except Exception as e:
+                logger.warning(f"Failed to send to user {uid}: {e}")
+                results.append(f"❌ User {uid}")
+
+    # Default: send to all chats if neither -user nor -group
+    if "-user" not in flags and "-group" not in flags and "-nobot" not in flags:
         for chat in chats_col.find():
             chat_id = chat["chat_id"]
             try:
@@ -151,16 +179,6 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 logger.warning(f"Failed to send to chat {chat_id}: {e}")
                 results.append(f"❌ Chat {chat_id}")
-
-    if "-user" in flags:
-        for user in users_col.find():
-            uid = user["user_id"]
-            try:
-                await context.bot.send_message(chat_id=uid, text=message_text)
-                results.append(f"👤 Sent to user {uid}")
-            except Exception as e:
-                logger.warning(f"Failed to send to user {uid}: {e}")
-                results.append(f"❌ User {uid}")
 
     await update.message.reply_text("\n".join(results) or "⚠️ Nothing sent.")
 
